@@ -1,3 +1,6 @@
-l=[1,2,3,4]
-
-print(l[2])
+n=5
+for i in range(n):
+    for j in range(n):
+        print("*",end=" ")
+    print()
+     

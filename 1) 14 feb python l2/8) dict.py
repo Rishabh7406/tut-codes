@@ -22,5 +22,5 @@ student.pop("age")
 print(student)
 
 # Loop through dictionary
-for key, value in student.items():
-    print(f"{key}: {value}")
+for key in student.items():
+    print(key)
