@@ -1,9 +1,7 @@
-def is_even(num):
-    if(num%2==0):
-        return True
+def maxi(a,b):
+    if(a>b):
+        return a
     else:
-        return False
+        return b
 
-
-print(is_even(2))
-print(is_even(23))
+print(maxi(2,4))    
