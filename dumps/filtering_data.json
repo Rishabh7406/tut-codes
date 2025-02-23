@@ -1,0 +1,131 @@
+{
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "# Filtering Data in Pandas (Detailed)\n",
+                "\n",
+                "Filtering helps select specific rows based on conditions. In this notebook, we cover:\n",
+                "- Boolean indexing\n",
+                "- Using `loc[]`\n",
+                "- Using `query()`\n",
+                "- Combining multiple conditions"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "execution_count": null,
+            "source": [
+                "import pandas as pd\n\n",
+                "# Create a sample DataFrame\n",
+                "data = {\n",
+                "    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],\n",
+                "    'Age': [25, 30, 35, 40, 45],\n",
+                "    'Salary': [50000, 60000, 70000, 80000, 90000],\n",
+                "    'Department': ['HR', 'IT', 'IT', 'HR', 'Finance']\n",
+                "}\n",
+                "df = pd.DataFrame(data)\n",
+                "print('Original DataFrame:')\n",
+                "print(df)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### Filtering Using Boolean Indexing\n",
+                "Select rows where conditions are met using boolean expressions."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "execution_count": null,
+            "source": [
+                "# Filter employees older than 30\n",
+                "filtered_bool = df['Age'] > 30\n",
+                "filtered_df = df[filtered_bool]\n",
+                "print('\\nEmployees older than 30 (Boolean Indexing):')\n",
+                "print(filtered_df)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### Filtering Using loc[]\n",
+                "The `loc[]` function filters rows based on label conditions."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "execution_count": null,
+            "source": [
+                "filtered_loc = df.loc[df['Department'] == 'IT']\n",
+                "print('\\nEmployees in IT Department (loc[]):')\n",
+                "print(filtered_loc)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### Filtering Using query()\n",
+                "The `query()` method allows filtering with a string expression."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "execution_count": null,
+            "source": [
+                "filtered_query = df.query('Salary >= 70000')\n",
+                "print('\\nEmployees with Salary >= 70000 (query()):')\n",
+                "print(filtered_query)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### Combining Multiple Conditions\n",
+                "Combine conditions using `&` (AND) or `|` (OR). Use parentheses to group conditions."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "execution_count": null,
+            "source": [
+                "# Employees older than 30 and in IT department\n",
+                "combined_filter = df[(df['Age'] > 30) & (df['Department'] == 'IT')]\n",
+                "print('\\nEmployees older than 30 and in IT:')\n",
+                "print(combined_filter)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### Summary\n",
+                "Filtering is crucial for data analysis. Use the method that offers clarity and meets your needs."
+            ]
+        }
+    ],
+    "metadata": {
+        "kernelspec": {
+            "display_name": "Python 3",
+            "language": "python",
+            "name": "python3"
+        },
+        "language_info": {
+            "name": "python",
+            "version": "3.x"
+        }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2
+}

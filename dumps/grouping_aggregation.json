@@ -1,0 +1,114 @@
+{
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "# Grouping & Aggregation in Pandas (Detailed)\n",
+                "\n",
+                "This notebook demonstrates how to group data by one or more keys and perform aggregations to extract insights. Topics include:\n",
+                "- Grouping using `groupby()`\n",
+                "- Aggregation functions (e.g., `mean`, `sum`, `count`)\n",
+                "- Applying multiple and custom aggregations"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "execution_count": null,
+            "source": [
+                "import pandas as pd\n\n",
+                "# Create a sample DataFrame\n",
+                "data = {\n",
+                "    'Department': ['HR', 'IT', 'IT', 'HR', 'Finance', 'Finance', 'IT'],\n",
+                "    'Salary': [50000, 70000, 80000, 55000, 90000, 95000, 72000],\n",
+                "    'Experience': [2, 5, 7, 3, 10, 12, 6]\n",
+                "}\n",
+                "df = pd.DataFrame(data)\n",
+                "print('Original DataFrame:')\n",
+                "print(df)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### Grouping Data\n",
+                "Group the DataFrame by the 'Department' column."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "execution_count": null,
+            "source": [
+                "grouped = df.groupby('Department')\n",
+                "print('\\nGrouped Data:')\n",
+                "for name, group in grouped:\n",
+                "    print(f'\\n{name} group:')\n",
+                "    print(group)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### Aggregation\n",
+                "Apply multiple aggregation functions using `agg()`. You can use built-in functions or custom lambda functions."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "execution_count": null,
+            "source": [
+                "# Multiple aggregations\n",
+                "agg_df = grouped.agg({\n",
+                "    'Salary': ['mean', 'sum', 'count'],\n",
+                "    'Experience': 'mean'\n",
+                "})\n",
+                "print('\\nAggregated Data:')\n",
+                "print(agg_df)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### Custom Aggregations\n",
+                "Calculate the salary range (max - min) for each department."
+            ]
+        },
+        {
+            "cell_type": "code",
+            "metadata": {},
+            "execution_count": null,
+            "source": [
+                "salary_range = grouped['Salary'].agg(lambda x: x.max() - x.min())\n",
+                "print('\\nSalary Range per Department:')\n",
+                "print(salary_range)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### Summary\n",
+                "Grouping and aggregation simplify analysis by summarizing key metrics. Experiment with various aggregation methods to explore your data."
+            ]
+        }
+    ],
+    "metadata": {
+        "kernelspec": {
+            "display_name": "Python 3",
+            "language": "python",
+            "name": "python3"
+        },
+        "language_info": {
+            "name": "python",
+            "version": "3.x"
+        }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2
+}
